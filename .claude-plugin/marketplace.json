@@ -9,10 +9,8 @@
       "name": "agentforge",
       "description": "Planner-Critic 루프로 전략 기획서를 작성하는 /forge 스킬과 전용 에이전트 세트.",
       "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/hansolparkdev/agentforge.git",
-        "path": "/",
-        "ref": "main"
+        "source": "url",
+        "url": "https://github.com/hansolparkdev/agentforge.git"
       },
       "version": "1.0.0"
     }
