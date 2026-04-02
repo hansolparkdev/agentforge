@@ -1,7 +1,7 @@
 ---
 name: create-agent
 description: 새로운 Claude Code subagent를 인터뷰를 통해 생성하는 skill. /create-agent 명령으로 호출되며, 사용자와 대화하면서 역할, 도구, 모델을 결정하고 .claude/agents/ 에 파일을 생성한다.
-allowed-tools: Read, Write, Glob
+version: 0.2.0
 ---
 
 # Create Agent
