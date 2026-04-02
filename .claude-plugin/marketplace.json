@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "agent-factory",
-      "description": "새로운 Claude Code subagent를 생성하는 agent. '기획 agent 만들어줘' 요청에 자동 응답.",
+      "description": "인터뷰를 통해 새로운 Claude Code subagent를 생성하는 skill. /create-agent 명령으로 호출.",
       "source": "./plugins/agent-factory",
       "version": "0.1.0"
     }
