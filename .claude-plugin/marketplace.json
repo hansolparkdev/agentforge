@@ -6,10 +6,10 @@
   },
   "plugins": [
     {
-      "name": "agent-factory",
-      "description": "인터뷰를 통해 새로운 Claude Code subagent를 생성하는 skill. /create-agent 명령으로 호출.",
-      "source": "./plugins/agent-factory",
-      "version": "0.6.0"
+      "name": "agentforge",
+      "description": "Planner-Critic 루프로 전략 기획서를 작성하는 /plan 스킬과 전용 에이전트 세트.",
+      "source": "./plugins/agentforge",
+      "version": "1.0.0"
     }
   ]
 }
