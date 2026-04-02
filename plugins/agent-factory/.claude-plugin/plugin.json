@@ -1,0 +1,8 @@
+{
+  "name": "agent-factory",
+  "description": "새로운 Claude Code subagent를 생성하는 agent",
+  "version": "0.1.0",
+  "author": {
+    "name": "hansolparkdev"
+  }
+}
