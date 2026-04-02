@@ -1,9 +1,9 @@
 ---
-name: plan
-description: 주제를 기획한다. "/plan {주제}"로 호출하면 Planner와 Critic이 협력하여 전략 기획서를 작성한다. 기획서가 필요할 때, 새 기능/서비스/프로젝트를 시작할 때 사용한다.
+name: forge
+description: 주제를 기획한다. "/forge {주제}"로 호출하면 Planner와 Critic이 협력하여 전략 기획서를 작성한다. 기획서가 필요할 때, 새 기능/서비스/프로젝트를 시작할 때 사용한다.
 ---
 
-# Plan
+# Forge
 
 Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최대 3라운드.
 
@@ -76,7 +76,7 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 마지막 비평: docs/plans/{topic}-critique-r3.md
 
 중재가 필요합니다. 다음 중 선택해주세요:
-1. "/plan {topic}" — 처음부터 다시 시작
+1. "/forge {topic}" — 처음부터 다시 시작
 2. 마지막 비평 문서를 확인 후 수동으로 수정
 3. 현재 기획서를 그대로 사용
 ```
