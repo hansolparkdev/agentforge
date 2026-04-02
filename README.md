@@ -1,6 +1,6 @@
 # agentforge
 
-Claude Code plugin marketplace. `/plan` 스킬 하나로 McKinsey/BCG 수준의 전략 기획서를 자동 작성한다.
+Claude Code plugin marketplace. `/forge` 스킬 하나로 McKinsey/BCG 수준의 전략 기획서를 자동 작성한다.
 
 Planner가 기획서를 쓰고, Critic이 비평하고, Planner가 수정하는 루프를 최대 3라운드 반복한다.
 
@@ -10,27 +10,24 @@ Planner가 기획서를 쓰고, Critic이 비평하고, Planner가 수정하는 
 # 1. agentforge를 marketplace로 등록
 /plugin marketplace add hansolparkdev/agentforge
 
-# 2. plugin 설치
+# 2. plugin 설치 (project scope 선택)
 /plugin install agentforge@agentforge
 ```
 
-설치 후 프로젝트에 다음 파일이 생성된다:
-- `.claude/agents/planner.md`
-- `.claude/agents/critic.md`
-- `.claude/skills/plan/SKILL.md`
+설치하면 `~/.claude/plugins/cache/`에 파일이 저장되고, 프로젝트의 `.claude/settings.json`에 활성화 등록된다. 다른 프로젝트에서도 동일하게 설치하면 같은 캐시를 공유한다.
 
 ## 사용법
 
 ```
-/plan 틱택토 게임
-/plan SNS 플랫폼
-/plan 회의록 자동화 SaaS
+/forge 틱택토 게임
+/forge SNS 플랫폼
+/forge 회의록 자동화 SaaS
 ```
 
 실행 흐름:
 
 ```
-/plan {주제}
+/forge {주제}
   └── Round 1
   │     ├── Planner → docs/plans/{topic}-plan.md 생성
   │     └── Critic  → docs/plans/{topic}-critique-r1.md 생성
@@ -74,7 +71,7 @@ docs/plans/
 
 - **모델:** claude-opus-4-6
 - **도구:** Read, Glob, Grep, WebSearch, WebFetch, Write
-- **호출 방식:** `/plan` 스킬을 통해서만 실행. 직접 호출하지 않는다.
+- **호출 방식:** `/forge` 스킬을 통해서만 실행. 직접 호출하지 않는다.
 
 ### critic
 
@@ -82,12 +79,12 @@ docs/plans/
 
 - **모델:** claude-opus-4-6
 - **도구:** Read, Glob, Grep, WebSearch, WebFetch, Write
-- **호출 방식:** `/plan` 스킬을 통해서만 실행. 직접 호출하지 않는다.
+- **호출 방식:** `/forge` 스킬을 통해서만 실행. 직접 호출하지 않는다.
 - **통과 기준:** 8개 섹션 중 재작성 필요(❌) 0개, 보완 필요(⚠️) 2개 이하
 
 ## Skills
 
-### /plan
+### /forge
 
 Planner-Critic 루프를 오케스트레이션하는 스킬.
 
@@ -97,18 +94,17 @@ Planner-Critic 루프를 오케스트레이션하는 스킬.
 
 ## 저장소 구조
 
+저장소 루트가 곧 plugin 루트다.
+
 ```
 agentforge/
 ├── .claude-plugin/
-│   └── marketplace.json
-└── plugins/
-    └── agentforge/
-        ├── .claude-plugin/
-        │   └── plugin.json
-        ├── agents/
-        │   ├── planner.md
-        │   └── critic.md
-        └── skills/
-            └── plan/
-                └── SKILL.md
+│   ├── marketplace.json
+│   └── plugin.json
+├── agents/
+│   ├── planner.md
+│   └── critic.md
+└── skills/
+    └── forge/
+        └── SKILL.md
 ```
