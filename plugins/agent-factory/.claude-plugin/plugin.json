@@ -1,7 +1,6 @@
 {
   "name": "agent-factory",
-  "description": "새로운 Claude Code subagent를 생성하는 agent",
-  "version": "0.3.0",
+  "description": "인터뷰를 통해 새로운 Claude Code subagent를 생성하는 skill. /create-agent 명령으로 호출.",
   "author": {
     "name": "hansolparkdev"
   }
