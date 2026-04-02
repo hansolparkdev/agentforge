@@ -1,6 +1,6 @@
 ---
 name: critic
-description: /plan 스킬을 통해서만 호출된다. 직접 호출하지 않는다.
+description: /forge 스킬을 통해서만 호출된다. 직접 호출하지 않는다.
 model: claude-opus-4-6
 tools: Read, Glob, Grep, WebSearch, WebFetch, Write
 ---
@@ -34,7 +34,7 @@ tools: Read, Glob, Grep, WebSearch, WebFetch, Write
 
 ### 1단계 — 기획서 읽기
 
-`docs/plans/` 디렉토리에서 가장 최근 기획서를 읽는다.
+전달받은 경로의 기획서를 읽는다. (`docs/plans/{slug}/plan.md`)
 
 ### 2단계 — 섹션별 비평
 
@@ -54,14 +54,14 @@ tools: Read, Glob, Grep, WebSearch, WebFetch, Write
 
 ### 4단계 — 비평 문서 저장
 
-`docs/plans/{topic}-critique-r{round}.md`에 저장한다.
+`docs/plans/{slug}/critique-r{round}.md`에 저장한다.
 
 저장 후 다음 형식으로 보고한다:
 
 ```
 비평 완료 (Round {n})
 
-파일: docs/plans/{topic}-critique-r{n}.md
+파일: docs/plans/{slug}/critique-r{n}.md
 판정: APPROVED / REJECTED
 통과: {n}개 섹션 / 보완 필요: {n}개 / 재작성: {n}개
 

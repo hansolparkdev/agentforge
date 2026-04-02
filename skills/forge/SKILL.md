@@ -21,9 +21,12 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 
 사용자 입력에서 주제를 추출한다. 주제가 불명확하면 한 줄로 질문한다.
 
+주제를 영문 소문자 kebab-case slug로 변환하여 Planner에 전달한다.
+
 ```
 주제: {topic}
-기획서 경로: docs/plans/{topic}-plan.md
+slug: {slug}
+기획서 경로: docs/plans/{slug}/plan.md
 ```
 
 ### 라운드 루프 (최대 3회)
@@ -38,8 +41,8 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 
 2. **Planner 호출**
    - Round 1: 신규 기획서 작성
-   - Round 2+: Critic 비평 문서를 반영하여 기획서 수정
-   - 전달 컨텍스트: 주제, 이전 비평 파일 경로 (있는 경우)
+   - Round 2+: 비평 문서를 반영하여 기획서 수정
+   - 전달 컨텍스트: 주제, slug, 이전 비평 파일 경로 (있는 경우)
 
 3. 사용자에게 진행 상황 알림
    ```
@@ -48,7 +51,7 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 
 4. **Critic 호출**
    - 방금 작성된 기획서 비평
-   - 전달 컨텍스트: 기획서 파일 경로, 현재 라운드 번호
+   - 전달 컨텍스트: `docs/plans/{slug}/plan.md`, 현재 라운드 번호
 
 5. Critic 판정 확인
    - **APPROVED** → 루프 종료, 완료 보고
@@ -61,19 +64,17 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 기획 완료 ✓
 
 주제: {topic}
-최종 기획서: docs/plans/{topic}-plan.md
+최종 기획서: docs/plans/{slug}/plan.md
 라운드: {n}회
-비평 이력: docs/plans/{topic}-critique-r1.md ~ r{n}.md
-
-다음 단계: 기획서를 바탕으로 구현을 시작하려면 architect 또는 개발 명령을 실행하세요.
+비평 이력: docs/plans/{slug}/critique-r1.md ~ r{n}.md
 ```
 
 **데드락 (3라운드 REJECTED) 시:**
 ```
 3라운드 후에도 합의에 도달하지 못했습니다.
 
-기획서: docs/plans/{topic}-plan.md
-마지막 비평: docs/plans/{topic}-critique-r3.md
+기획서: docs/plans/{slug}/plan.md
+마지막 비평: docs/plans/{slug}/critique-r3.md
 
 중재가 필요합니다. 다음 중 선택해주세요:
 1. "/forge {topic}" — 처음부터 다시 시작
