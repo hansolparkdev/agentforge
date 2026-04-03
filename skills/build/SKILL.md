@@ -26,9 +26,9 @@ test-writer → implementer → reviewer → qa 순서로 에이전트를 실행
 
 - 에이전트 순서를 반드시 지킨다
 - 각 에이전트 호출 시 이전 산출물(파일 목록, 판정 결과)을 컨텍스트로 명시적으로 전달한다
-- reviewer FAIL 시 지적 사항 전체를 implementer에게 전달하여 재호출한다 (최대 3회)
-- qa FAIL 시 실패 유형별 담당 에이전트를 재호출한다 (최대 3회)
-- 3회 초과 실패 시 사용자에게 에스컬레이션한다
+- reviewer FAIL 시 지적 사항 전체를 implementer에게 전달하여 재호출한다 (최대 2회)
+- qa FAIL 시 실패 유형별 담당 에이전트를 재호출한다 (최대 2회)
+- **같은 에이전트가 2회 연속 FAIL이면 즉시 에스컬레이션한다** — 루프 금지
 - 각 에이전트 호출 전후 시각을 기록하여 완료 보고에 포함한다
 
 ## 실행 절차
@@ -82,8 +82,8 @@ features: docs/plans/{slug}/features.md (있는 경우)
 
 - PASS → [4/4] qa로 진행
 - FAIL → reviewer_count += 1
-  - reviewer_count ≤ 3: reviewer 지적 사항 전체를 implementer에게 전달 → [2/4]부터 재실행
-  - reviewer_count > 3: 에스컬레이션
+  - reviewer_count ≤ 2: reviewer 지적 사항 전체를 implementer에게 전달 → [2/4]부터 재실행
+  - reviewer_count > 2: 즉시 에스컬레이션
 
 ---
 
@@ -92,11 +92,11 @@ features: docs/plans/{slug}/features.md (있는 경우)
 
 - PASS → features.md Tasks 업데이트 후 완료 보고
 - FAIL → qa_count += 1
-  - qa_count ≤ 3: 실패 유형별 담당 에이전트로 재호출
+  - qa_count ≤ 2: 실패 유형별 담당 에이전트로 재호출
     - 커버리지 미달 → [1/4] test-writer 재실행 (테스트 추가)
     - E2E / API / 보안 실패 → [2/4] implementer 재실행 (qa 실패 내용 전달)
     - 빌드/린트 실패 → [2/4] implementer 재실행
-  - qa_count > 3: 에스컬레이션
+  - qa_count > 2: 즉시 에스컬레이션
 
 ---
 
