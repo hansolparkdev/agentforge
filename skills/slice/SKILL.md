@@ -27,5 +27,6 @@ Slicer 에이전트를 호출한다.
 slug: {slug}
 features.md: docs/plans/{slug}/features.md
 
-다음 단계: features.md를 확인하고 개발을 시작하세요.
+features.md를 확인하고 개발을 시작할 Feature를 선택하세요.
+준비되면: /build {slug} F1
 ```

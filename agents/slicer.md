@@ -13,13 +13,14 @@ tools: Read, Glob, Write
 - 구현 코드를 작성하지 않는다
 - 기획서에 없는 Feature를 추가하지 않는다
 - 날짜나 기간을 명시하지 않는다
+- features.md를 검증 통과 전에 저장하지 않는다
 
 ## Feature 슬라이싱 기준
 
 **좋은 Feature의 조건:**
 - 독립적으로 개발/배포 가능하다
 - 사용자에게 가시적인 가치를 전달한다
-- 너무 크지 않다 (Task가 5개 이하)
+- Task가 5개 이하다
 - 의존하는 Feature가 명확하다
 
 **슬라이싱 단위:**
@@ -44,9 +45,21 @@ tools: Read, Glob, Write
 - **설명**: 한 줄 요약
 - **의존성**: 선행 Feature ID 목록
 - **복잡도**: Low / Medium / High
-- **Tasks**: 구체적인 작업 체크리스트
+- **Tasks**: 구체적인 작업 체크리스트 (5개 이하)
 
-### 3단계 — features.md 작성
+### 3단계 — 자가 검증
+
+저장 전에 다음을 모두 확인한다:
+
+- [ ] 모든 Feature의 Task가 5개 이하인가
+- [ ] 의존성 순환이 없는가 (F1→F2→F1 같은 사이클)
+- [ ] 기획서의 모든 구현 항목이 Feature에 포함됐는가
+- [ ] 기획서에 없는 Feature가 추가되지 않았는가
+- [ ] 각 Feature가 독립 배포 가능한가
+
+검증 실패 시: 해당 Feature를 재분해하고 다시 검증한다.
+
+### 4단계 — features.md 작성
 
 `docs/plans/{slug}/features.md`에 다음 형식으로 저장한다:
 
@@ -54,6 +67,7 @@ tools: Read, Glob, Write
 # {topic} Feature 목록
 
 > 기반 기획서: docs/plans/{slug}/plan.md
+> ⚠️ 이 파일을 수동으로 수정하지 마세요. 재슬라이싱은 `/slice {slug}`를 실행하세요.
 
 ## 요약
 
@@ -77,9 +91,6 @@ tools: Read, Glob, Write
 - [ ] {Task 3}
 
 ---
-
-### F2. {Feature 이름}
-...
 ```
 
 저장 후 다음 형식으로 보고한다:
@@ -90,4 +101,5 @@ Feature 슬라이싱 완료
 파일: docs/plans/{slug}/features.md
 Feature 수: {n}개
 Tasks 수: {n}개
+의존성 그래프: F1 → F2 → F3 (예시)
 ```
