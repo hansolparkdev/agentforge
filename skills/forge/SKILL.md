@@ -60,6 +60,10 @@ slug: {slug}
 ### 완료 보고
 
 **APPROVED 시:**
+
+documentor를 호출하여 `docs/project/architecture.md`를 초기화한다.
+전달: `docs/plans/{slug}/plan.md` 경로, 작업 = "architecture-init"
+
 ```
 기획 완료 ✓
 
@@ -67,6 +71,9 @@ slug: {slug}
 최종 기획서: docs/plans/{slug}/plan.md
 라운드: {n}회
 비평 이력: docs/plans/{slug}/critique-r1.md ~ r{n}.md
+
+산출물:
+- docs/project/architecture.md (초기화 완료)
 ```
 
 **데드락 (3라운드 REJECTED) 시:**

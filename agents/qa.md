@@ -41,6 +41,7 @@ tools: Read, Glob, Grep, Bash
 ### 1단계 — 환경 확인
 
 `CLAUDE.md` 읽기 후 프로젝트 유형 판단.
+`docs/project/coverage.md` (있으면) 읽기 — 이전 커버리지 기준선 파악.
 
 E2E/API 테스트 도구가 없으면 설치한다:
 ```bash

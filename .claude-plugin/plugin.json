@@ -1,6 +1,6 @@
 {
   "name": "agentforge",
-  "description": "Planner-Critic 루프로 전략 기획서를 작성하는 /plan 스킬과 전용 에이전트 세트.",
+  "description": "기획(/forge) → Feature 분해(/slice) → TDD 개발(/build) 전 과정을 자동화하는 에이전트 세트.",
   "author": {
     "name": "hansolparkdev"
   }

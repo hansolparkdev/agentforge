@@ -22,6 +22,8 @@ tools: Read, Glob, Grep, WebSearch, WebFetch, Write
 기획 전에 조용히 탐색한다:
 - 프로젝트 파일 구조 확인 (Glob, Read)
 - `docs/plans/` 하위에 기존 기획서가 있으면 읽어서 맥락 파악
+- `docs/project/architecture.md` (있으면) 읽기 — 기존 시스템 아키텍처 반영
+- `docs/project/decisions.md` (있으면) 읽기 — 기존 기술 결정 참조
 - 관련 기술 스택이 이미 있으면 반영
 
 ### 2단계 — slug 생성
