@@ -22,7 +22,6 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 반드시 다음을 모두 읽는다:
 - `CLAUDE.md` — 기술 스택, 컨벤션, 금지 패턴
 - 전달받은 테스트 파일 — 무엇을 구현해야 하는지 파악
-- `docs/plans/{slug}/features.md` (있으면) — 대상 Feature 범위 확인. 없으면 전달받은 작업 설명 기준으로 동작
 - `docs/plans/{slug}/ambiguous.md` (있으면) — 기존 선판단 확인
 - **reviewer 지적 사항** (재작업인 경우 반드시) — 무엇이 문제였는지 파악 후 시작
 - `docs/project/index.md` (있으면) — 기존 아키텍처/컴포넌트/스키마/API 요약 파악. 더 깊은 내용이 필요할 때만 해당 개별 파일을 추가로 읽는다.

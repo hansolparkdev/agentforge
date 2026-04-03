@@ -39,7 +39,6 @@ tools: Read, Glob, Grep, Bash
 
 - `CLAUDE.md` 읽기 — 프로젝트 컨벤션, 보안 규칙
 - **전달받은 파일 목록만** 읽기 (git diff 범위)
-- `docs/project/index.md` (있으면) 읽기 — 보안 기준 및 프로젝트 컨텍스트 파악
 
 ### 2단계 — 리뷰
 

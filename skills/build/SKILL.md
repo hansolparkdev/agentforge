@@ -94,7 +94,9 @@ qa PASS 후 documentor 완료 시:
 
 ---
 
-**[3/6] refactorer**
+**[3/6] refactorer** (조건부 실행)
+수정 파일이 3개 이하이고 implementer가 "단순 구현"으로 완료한 경우 → 건너뛰고 [4/6]으로
+그 외 → 실행
 전달: implementer가 작성/수정한 파일 경로 목록
 산출물: 수정된 파일 경로 목록
 

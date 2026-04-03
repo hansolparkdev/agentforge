@@ -21,9 +21,8 @@ tools: Read, Glob, Grep, Write, Bash
 
 - `CLAUDE.md` 읽기 — 기술 스택, 테스트 프레임워크 파악
 - `docs/plans/{slug}/features.md` 읽기 (있으면) — 대상 Feature 확인. 없으면 전달받은 작업 설명을 Feature 정의로 사용
-- `docs/project/index.md` (있으면) 읽기 — 기존 컴포넌트/API 구조 파악
-- 기존 테스트 파일 패턴 확인 (Glob)
-- 테스트 설정 파일 확인 (jest.config, vitest.config, pytest.ini 등)
+- 테스트 설정 파일 확인 (jest.config, vitest.config, pytest.ini 중 하나만 — 있으면 환경 설치 스킵)
+- `docs/project/index.md` (있으면) 읽기 — 기존 컴포넌트/API 구조 파악 (없으면 스킵)
 
 ### 2단계 — 테스트 환경 확보
 

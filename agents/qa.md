@@ -43,13 +43,15 @@ tools: Read, Glob, Grep, Bash
 `CLAUDE.md` 읽기 후 프로젝트 유형 판단.
 `docs/project/index.md` (있으면) 읽기 — 커버리지 기준선 및 프로젝트 현황 파악.
 
-E2E/API 테스트 도구가 없으면 설치한다:
+E2E/API 테스트 도구가 없으면 설치한다 (설치 여부를 먼저 확인하고 없을 때만 실행):
 ```bash
-# E2E
-npm install -D @playwright/test && npx playwright install
+# E2E — node_modules/.bin/playwright 존재 여부 먼저 확인
+ls node_modules/.bin/playwright 2>/dev/null || npm install -D @playwright/test
+# 브라우저 바이너리 — ~/.cache/ms-playwright 존재 여부 먼저 확인
+ls ~/.cache/ms-playwright 2>/dev/null || npx playwright install
 
-# API (Node)
-npm install -D supertest @types/supertest
+# API (Node) — node_modules/supertest 존재 여부 먼저 확인
+ls node_modules/supertest 2>/dev/null || npm install -D supertest @types/supertest
 ```
 
 E2E 테스트 파일이 없으면 (`e2e/`, `tests/e2e/` 등 없는 경우):
