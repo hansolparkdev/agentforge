@@ -22,7 +22,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 반드시 다음을 모두 읽는다:
 - `CLAUDE.md` — 기술 스택, 컨벤션, 금지 패턴
 - 전달받은 테스트 파일 — 무엇을 구현해야 하는지 파악
-- `docs/plans/ambiguous.md` (있으면) — 기존 선판단 확인
+- `docs/plans/{slug}/ambiguous.md` (있으면) — 기존 선판단 확인
 - **reviewer 지적 사항** (재작업인 경우 반드시) — 무엇이 문제였는지 파악 후 시작
 - `docs/project/index.md` (있으면) — 기존 아키텍처/컴포넌트/스키마/API 요약 파악. 더 깊은 내용이 필요할 때만 해당 개별 파일을 추가로 읽는다.
 
@@ -30,7 +30,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 
 구현 중 스펙이 모호한 부분이 있으면:
 1. 합리적으로 선판단하고 진행
-2. `docs/plans/ambiguous.md`에 기록 (파일 없으면 생성)
+2. `docs/plans/{slug}/ambiguous.md`에 기록 (파일 없으면 생성)
 
 ```markdown
 - [ ] {모호한 항목} → {선판단 내용}으로 가정 (근거: {이유})

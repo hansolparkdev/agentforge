@@ -32,7 +32,7 @@ tools: Read, Glob, Write
 
 ### 1단계 — 기획서 읽기
 
-`docs/plans/plan.md`를 읽는다.
+`docs/plans/{slug}/plan.md`를 읽는다.
 집중할 섹션: **시스템 아키텍처**, **구현 로드맵**, **완료 조건**
 
 ### 2단계 — Feature 분해
@@ -61,13 +61,13 @@ tools: Read, Glob, Write
 
 ### 4단계 — features.md 작성
 
-`docs/plans/features.md`에 다음 형식으로 저장한다:
+`docs/plans/{slug}/features.md`에 다음 형식으로 저장한다:
 
 ```markdown
 # {topic} Feature 목록
 
-> 기반 기획서: docs/plans/plan.md
-> ⚠️ 이 파일을 수동으로 수정하지 마세요. 재슬라이싱은 `/slice`를 실행하세요.
+> 기반 기획서: docs/plans/{slug}/plan.md
+> ⚠️ 이 파일을 수동으로 수정하지 마세요. 재슬라이싱은 `/slice {slug}`를 실행하세요.
 
 ## 요약
 
@@ -98,7 +98,7 @@ tools: Read, Glob, Write
 ```
 Feature 슬라이싱 완료
 
-파일: docs/plans/features.md
+파일: docs/plans/{slug}/features.md
 Feature 수: {n}개
 Tasks 수: {n}개
 의존성 그래프: F1 → F2 → F3 (예시)

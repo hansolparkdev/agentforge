@@ -1,6 +1,6 @@
 ---
 name: forge
-description: 주제를 기획한다. "/forge {주제}"로 호출하면 Planner와 Critic이 협력하여 전략 기획서를 작성한다. 기획서가 필요할 때, 새 기능/서비스/프로젝트를 시작할 때 사용한다.
+description: 주제를 기획한다. "/forge {주제}"로 호출하면 Planner와 Critic이 협력하여 전략 기획서를 작성한다. 같은 프로젝트에 기능을 추가할 때마다 호출한다.
 ---
 
 # Forge
@@ -21,67 +21,64 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 
 사용자 입력에서 주제를 추출한다. 주제가 불명확하면 한 줄로 질문한다.
 
-기획서 경로는 `docs/plans/plan.md`로 고정한다.
+주제를 kebab-case slug로 변환하여 Planner에 전달한다.
+- "틱택토 게임" → `tic-tac-toe`
+- "다크모드" → `dark-mode`
+- "로그인 기능" → `login`
+
+기획서 경로: `docs/plans/{slug}/plan.md`
 
 ### 라운드 루프 (최대 3회)
 
-**각 라운드:**
-
-1. 사용자에게 진행 상황 알림
+1. 사용자에게 진행 상황 알림:
    ```
-   Round {n}/3 시작
-   Planner 실행 중...
+   Round {n}/3 시작 — Planner 실행 중...
    ```
 
 2. **Planner 호출**
    - Round 1: 신규 기획서 작성
-   - Round 2+: 비평 문서를 반영하여 기획서 수정
-   - 전달 컨텍스트: 주제, 이전 비평 파일 경로 (있는 경우)
+   - Round 2+: 비평 반영하여 수정
+   - 전달: 주제, slug, 이전 비평 파일 경로 (있는 경우)
 
-3. 사용자에게 진행 상황 알림
+3. 사용자에게 진행 상황 알림:
    ```
    Planner 완료 → Critic 실행 중...
    ```
 
 4. **Critic 호출**
-   - 방금 작성된 기획서 비평
-   - 전달 컨텍스트: `docs/plans/plan.md`, 현재 라운드 번호
+   - 전달: `docs/plans/{slug}/plan.md`, 라운드 번호
 
 5. Critic 판정 확인
-   - **APPROVED** → 루프 종료, 완료 보고
-   - **REJECTED** → 다음 라운드 진행 (3라운드 미만인 경우)
+   - **APPROVED** → 루프 종료
+   - **REJECTED** → 다음 라운드 (3라운드 미만인 경우)
 
 ### 완료 보고
 
 **APPROVED 시:**
 
-documentor를 호출하여 `docs/project/architecture.md`와 `docs/project/index.md`를 초기화한다.
-전달: `docs/plans/plan.md` 경로, 작업 = "architecture-init"
+documentor를 호출하여 `docs/project/index.md`를 갱신한다.
+전달: `docs/plans/{slug}/plan.md` 경로, 작업 = "architecture-init"
 
 ```
 기획 완료 ✓
 
 주제: {topic}
-최종 기획서: docs/plans/plan.md
+slug: {slug}
+최종 기획서: docs/plans/{slug}/plan.md
 라운드: {n}회
-비평 이력: docs/plans/critique-r1.md ~ r{n}.md
 
-산출물:
-- docs/project/architecture.md (초기화 완료)
-- docs/project/index.md (초기화 완료)
-
-다음 단계: /slice
+다음 단계: /slice {slug}
 ```
 
 **데드락 (3라운드 REJECTED) 시:**
 ```
 3라운드 후에도 합의에 도달하지 못했습니다.
 
-기획서: docs/plans/plan.md
-마지막 비평: docs/plans/critique-r3.md
+기획서: docs/plans/{slug}/plan.md
+마지막 비평: docs/plans/{slug}/critique-r3.md
 
-중재가 필요합니다. 다음 중 선택해주세요:
+다음 중 선택해주세요:
 1. "/forge {topic}" — 처음부터 다시 시작
 2. 마지막 비평 문서를 확인 후 수동으로 수정
-3. 현재 기획서를 그대로 사용
+3. 현재 기획서를 그대로 사용 후 "/slice {slug}"
 ```
