@@ -16,11 +16,11 @@ tools: Read, Glob, Grep, Bash
 
 ## 프로젝트 유형 판단
 
-`CLAUDE.md`에서 기술 스택을 읽어 다음을 결정한다:
+전달받은 기술 스택 기준으로 결정한다:
 - **Frontend only**: 커버리지 + 보안 스캔 + E2E
 - **Backend only**: 커버리지 + API 테스트
 - **Fullstack**: 커버리지 + 보안 스캔 + E2E + API 테스트
-- **판단 불가**: `CLAUDE.md`에 명시 요청 후 중단
+- **판단 불가**: 에스컬레이션 후 중단
 
 ## 완료 기준
 
@@ -41,34 +41,22 @@ tools: Read, Glob, Grep, Bash
 
 ### 1단계 — 환경 확인
 
-`CLAUDE.md` 읽기 후 프로젝트 유형 판단.
+전달받은 기술 스택으로 프로젝트 유형 결정.
 
-E2E/API 테스트 도구가 없으면 설치한다 (설치 여부를 먼저 확인하고 없을 때만 실행):
+E2E 도구가 없으면 설치한다 (없을 때만):
 ```bash
-# E2E — node_modules/.bin/playwright 존재 여부 먼저 확인
+# Node.js
 ls node_modules/.bin/playwright 2>/dev/null || npm install -D @playwright/test
-# 브라우저 바이너리 — ~/.cache/ms-playwright 존재 여부 먼저 확인
 ls ~/.cache/ms-playwright 2>/dev/null || npx playwright install
-
-# API (Node) — node_modules/supertest 존재 여부 먼저 확인
-ls node_modules/supertest 2>/dev/null || npm install -D supertest @types/supertest
+# Python
+pip show pytest-playwright 2>/dev/null || pip install pytest-playwright && playwright install
 ```
 
 E2E 테스트 파일이 없으면 (`e2e/`, `tests/e2e/` 등 없는 경우):
 - FAIL 처리 후 test-writer에게 E2E 테스트 작성 요청
 - 직접 작성하지 않는다
 
-### 2단계 — Task 파일 존재 검증
-
-`features.md`가 있는 경우, 대상 Feature의 Tasks에 명시된 파일이 실제로 존재하는지 확인한다.
-
-```
-Tasks에서 파일 경로 추출 → Glob/Bash로 존재 확인
-  → 없는 파일이 있으면 FAIL (누락 파일 목록과 함께 implementer에게 전달)
-  → 전부 존재하면 다음 단계 진행
-```
-
-### 3단계 — 순서대로 실행
+### 2단계 — 순서대로 실행
 
 **테스트 실행 전략 (속도 최적화):**
 - 커버리지는 **이번 Feature에서 수정된 파일 관련 테스트만** 먼저 실행
@@ -112,8 +100,14 @@ pytest tests/api
 
 **5. 보안 스캔 (Frontend/Fullstack):**
 ```bash
+# Node.js/TypeScript
 npx eslint . --plugin security
+# Python
+bandit -r .
+# Go
+gosec ./...
 ```
+전달받은 기술 스택에 맞는 명령만 실행한다.
 
 하나라도 실패하면 이후 단계도 계속 실행하여 전체 현황 파악 후 한 번에 보고한다.
 

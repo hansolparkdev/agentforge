@@ -42,6 +42,18 @@ test-writer → implementer → reviewer → qa 순서로 에이전트를 실행
 - `/build 로그인 만들어줘` → `docs/plans/login/features.md` 존재 확인, 없으면 자유형으로 처리
 - 여러 slug가 있고 불명확하면 목록 보여주고 선택 요청
 
+**CLAUDE.md 확인:**
+- 존재하지 않으면 즉시 중단:
+  ```
+  CLAUDE.md가 없습니다. 프로젝트 루트에 CLAUDE.md를 먼저 작성해주세요.
+  
+  최소 내용:
+  - 기술 스택 (언어, 프레임워크, 테스트 도구)
+  - 프로젝트 유형 (Frontend / Backend / Fullstack)
+  - 코드 컨벤션
+  ```
+- 존재하면 읽어서 기술 스택과 프로젝트 유형을 추출한다 (이후 모든 에이전트에 전달)
+
 **A. 기획서 기반인 경우:**
 - `docs/plans/{slug}/features.md` 존재 확인 (읽지 않는다)
 - 없으면: "Feature 목록이 없습니다. `/slice {slug}`를 먼저 실행하세요."
@@ -56,6 +68,9 @@ slug: {slug}
 feature: {F{n} | 작업 설명}
 기획서: docs/plans/{slug}/plan.md (있는 경우)
 features: docs/plans/{slug}/features.md (있는 경우)
+기술 스택: {CLAUDE.md에서 추출}
+프로젝트 유형: {Frontend | Backend | Fullstack}
+ambiguous.md: {있음 | 없음}
 ```
 
 ### 에이전트 루프

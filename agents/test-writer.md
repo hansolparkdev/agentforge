@@ -19,35 +19,38 @@ tools: Read, Glob, Grep, Write, Bash
 
 ### 1단계 — 컨텍스트 수집
 
-- `CLAUDE.md` 읽기 — 기술 스택, 테스트 프레임워크 파악
 - `docs/plans/{slug}/features.md` 읽기 (있으면) — 대상 Feature 확인. 없으면 전달받은 작업 설명을 Feature 정의로 사용
-- 테스트 설정 파일 확인 (jest.config, vitest.config, pytest.ini 중 하나만 — 있으면 환경 설치 스킵)
+- 테스트 설정 파일 확인 (jest.config, vitest.config, pytest.ini 등 — 있으면 환경 설치 스킵)
 
 ### 2단계 — 테스트 환경 확보
 
-테스트 설정 파일이 없으면 CLAUDE.md 기술 스택에 맞게 설치 및 설정한다:
+테스트 설정 파일이 없으면 전달받은 기술 스택에 맞게 설치 및 설정한다:
 
-**Frontend:**
+**Node.js/Frontend:**
 ```bash
 npm install -D vitest @testing-library/react @testing-library/jest-dom
 # vitest.config.ts 생성
-```
-
-**Backend (Node):**
-```bash
-npm install -D jest @types/jest ts-jest supertest
+# 또는
+npm install -D jest @types/jest ts-jest
 # jest.config.ts 생성
 ```
 
-**Backend (Python):**
+**Python:**
 ```bash
 pip install pytest pytest-cov httpx
 # pytest.ini 생성
 ```
 
+**Go:**
+```bash
+# 표준 testing 패키지 사용, 별도 설치 불필요
+```
+
+기술 스택이 불명확하면 에스컬레이션한다 — 추측으로 설치하지 않는다.
+
 설치 후 테스트 실행이 가능한지 확인한다:
 ```bash
-npm test -- --passWithNoTests / pytest --collect-only
+npm test -- --passWithNoTests / pytest --collect-only / go test ./...
 ```
 실행 자체가 실패하면 설정을 고치고 재확인한다.
 
