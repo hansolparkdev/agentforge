@@ -24,6 +24,7 @@ tools: Read, Glob, Grep, Bash
 
 ## 완료 기준
 
+
 ### 공통
 - [ ] 빌드 에러 없음
 - [ ] 린트 에러 없음
@@ -41,7 +42,6 @@ tools: Read, Glob, Grep, Bash
 ### 1단계 — 환경 확인
 
 `CLAUDE.md` 읽기 후 프로젝트 유형 판단.
-`docs/project/index.md` (있으면) 읽기 — 커버리지 기준선 및 프로젝트 현황 파악.
 
 E2E/API 테스트 도구가 없으면 설치한다 (설치 여부를 먼저 확인하고 없을 때만 실행):
 ```bash

@@ -56,9 +56,6 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 
 **APPROVED 시:**
 
-documentor를 호출하여 `docs/project/index.md`를 갱신한다.
-전달: `docs/plans/{slug}/plan.md` 경로, 작업 = "architecture-init"
-
 ```
 기획 완료 ✓
 
