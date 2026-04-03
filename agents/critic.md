@@ -40,7 +40,7 @@ tools: Read, Write
 
 ### 1단계 — 기획서 읽기
 
-전달받은 경로의 기획서를 읽는다. (`docs/plans/{slug}/plan.md`)
+전달받은 경로의 기획서를 읽는다. (`docs/plans/plan.md`)
 
 ### 2단계 — 섹션별 비평
 
@@ -60,14 +60,14 @@ tools: Read, Write
 
 ### 4단계 — 비평 문서 저장
 
-`docs/plans/{slug}/critique-r{round}.md`에 저장한다.
+`docs/plans/critique-r{round}.md`에 저장한다.
 
 저장 후 다음 형식으로 보고한다:
 
 ```
 비평 완료 (Round {n})
 
-파일: docs/plans/{slug}/critique-r{n}.md
+파일: docs/plans/critique-r{n}.md
 판정: APPROVED / REJECTED
 통과: {n}개 섹션 / 보완 필요: {n}개 / 재작성: {n}개
 

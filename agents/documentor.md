@@ -25,9 +25,9 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 ### 2단계 — 컨텍스트 수집
 
 다음을 읽는다:
-- `docs/project/index.md` (있으면) — 현재 프로젝트 상태 파악. 없으면 `docs/plans/{slug}/plan.md` 읽기
+- `docs/project/index.md` (있으면) — 현재 프로젝트 상태 파악. 없으면 `docs/plans/plan.md` 읽기
 - 전달받은 수정 파일 목록 (qa PASS된 파일들, feature-complete 시)
-- `docs/plans/{slug}/ambiguous.md` (있으면) — 선판단 기록
+- `docs/plans/ambiguous.md` (있으면) — 선판단 기록
 
 ### 3단계 — 갱신 대상 판단
 

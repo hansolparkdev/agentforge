@@ -24,15 +24,9 @@ tools: Read, Glob, Write
 `docs/project/index.md` 존재하면 읽는다 (기존 아키텍처/결정 파악).
 없으면 바로 2단계로 넘어간다. 추가 탐색하지 않는다.
 
-### 2단계 — slug 생성
+### 2단계 — 저장 경로 확인
 
-주제를 영문 소문자 kebab-case slug로 변환한다.
-- "틱택토 게임" → `tic-tac-toe`
-- "로그인 기능" → `login`
-- "프로필 화면" → `profile`
-- "회의록 자동화 SaaS" → `meeting-notes-saas`
-
-저장 경로: `docs/plans/{slug}/plan.md`
+저장 경로는 항상 `docs/plans/plan.md`로 고정한다. slug 디렉토리를 만들지 않는다.
 
 ### 3단계 — 기획서 작성
 
@@ -88,14 +82,14 @@ tools: Read, Glob, Write
 
 ### 4단계 — 저장
 
-`docs/plans/{slug}/plan.md`에 저장한다. 디렉토리가 없으면 생성한다.
+`docs/plans/plan.md`에 저장한다. 디렉토리가 없으면 생성한다.
 
 저장 후 다음 형식으로 보고한다:
 
 ```
 기획서 작성 완료
 
-파일: docs/plans/{slug}/plan.md
+파일: docs/plans/plan.md
 섹션: {8 | 9}개 (디자인 시스템 {포함 | 제외})
 아키텍처: {기술 스택 한 줄 요약}
 로드맵: {Phase 수}개 Phase
