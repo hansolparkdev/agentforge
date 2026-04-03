@@ -55,8 +55,8 @@ ls node_modules/supertest 2>/dev/null || npm install -D supertest @types/superte
 ```
 
 E2E 테스트 파일이 없으면 (`e2e/`, `tests/e2e/` 등 없는 경우):
-- 기본 Happy Path E2E 테스트 1개 작성 후 실행
-- 없는 상태로 PASS 처리하지 않는다
+- FAIL 처리 후 test-writer에게 E2E 테스트 작성 요청
+- 직접 작성하지 않는다
 
 ### 2단계 — Task 파일 존재 검증
 
@@ -100,15 +100,8 @@ pytest {관련 테스트} --cov --cov-report=term-missing
 
 **3. E2E (Frontend/Fullstack):**
 ```bash
-# headless 실행 (CI 모드)
-npx playwright test
-
-# 실패 시 headed 모드로 재실행하여 실제 브라우저에서 확인
 npx playwright test --headed
 ```
-
-E2E 실패 시 headed 모드로 반드시 재실행하여 브라우저 화면을 확인한다.
-headless 통과라도 시각적 레이아웃 이슈(깨진 CSS, 요소 겹침 등)가 의심되면 headed로 확인한다.
 
 **4. API (Backend/Fullstack):**
 ```bash
