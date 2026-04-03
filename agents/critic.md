@@ -58,18 +58,17 @@ tools: Read, Write
 - **통과**: "APPROVED — 구현 진행 가능" + 잔여 보완사항 목록
 - **반려**: "REJECTED — 재작성 필요" + 섹션별 구체적 개선 지시
 
-### 4단계 — 비평 문서 저장
+### 4단계 — 보고
 
-`docs/plans/{slug}/critique-r{round}.md`에 저장한다.
-
-저장 후 다음 형식으로 보고한다:
+파일을 저장하지 않는다. 결과를 바로 출력한다.
 
 ```
 비평 완료 (Round {n})
 
-파일: docs/plans/{slug}/critique-r{n}.md
 판정: APPROVED / REJECTED
 통과: {n}개 섹션 / 보완 필요: {n}개 / 재작성: {n}개
 
 {APPROVED: "구현 진행 가능" | REJECTED: "Planner 재작성 필요 — 주요 이슈: {핵심 문제 한 줄}"}
+
+{REJECTED 시: 섹션별 개선 지시 목록}
 ```

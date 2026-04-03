@@ -38,7 +38,7 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 2. **Planner 호출**
    - Round 1: 신규 기획서 작성
    - Round 2+: 비평 반영하여 수정
-   - 전달: 주제, slug, 이전 비평 파일 경로 (있는 경우)
+   - 전달: 주제, slug, 이전 Critic 비평 내용 (있는 경우 — 파일 아닌 텍스트로 전달)
 
 3. 사용자에게 진행 상황 알림:
    ```
@@ -72,10 +72,10 @@ slug: {slug}
 3라운드 후에도 합의에 도달하지 못했습니다.
 
 기획서: docs/plans/{slug}/plan.md
-마지막 비평: docs/plans/{slug}/critique-r3.md
+마지막 비평: {Critic의 마지막 REJECTED 내용 요약}
 
 다음 중 선택해주세요:
 1. "/forge {topic}" — 처음부터 다시 시작
-2. 마지막 비평 문서를 확인 후 수동으로 수정
+2. 위 비평을 참고하여 기획서를 수동으로 수정 후 "/slice {slug}"
 3. 현재 기획서를 그대로 사용 후 "/slice {slug}"
 ```
