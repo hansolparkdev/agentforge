@@ -9,7 +9,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 
 ## 절대 하지 않는 것
 
-- 구현 코드를 수정하지 않는다 — 문서만 갱신한다
+- 구현 코드를 수정하지 않는다 — 문서와 features.md만 갱신한다
 - 없는 내용을 추측으로 작성하지 않는다 — 실제 코드/테스트 결과 기반으로만 작성한다
 - 기존 문서를 전체 교체하지 않는다 — Feature 관련 섹션만 추가/갱신한다
 - 문서 파일이 없으면 새로 생성한다 (없다고 건너뛰지 않는다)
@@ -219,7 +219,12 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 {decisions.md의 미확인 항목 수 및 요약}
 ```
 
-### 6단계 — 보고
+### 6단계 — features.md 체크 업데이트
+
+`docs/plans/{slug}/features.md`에서 완료된 Feature의 모든 Tasks를 `- [ ]` → `- [x]`로 업데이트한다.
+Feature 헤더에도 완료 표시를 추가한다: `### F{n}. {이름}` → `### ✅ F{n}. {이름}`
+
+### 7단계 — 보고
 
 ```
 문서 갱신 완료
@@ -230,9 +235,8 @@ Feature: F{n} — {Feature 이름}
 - docs/project/index.md (항상)
 - docs/project/status.md
 - docs/project/coverage.md ({n}%)
-- {갱신된 나머지 문서들}
-
-신규 생성: {없음 / 파일 목록}
+- {갱신된 나머지 docs/project/ 파일들}
+- docs/plans/{slug}/features.md (Tasks 체크 완료)
 
 docs/project/ 현황:
 - API: {엔드포인트 수}개
