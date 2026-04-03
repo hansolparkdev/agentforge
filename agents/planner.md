@@ -79,7 +79,7 @@ tools: Read, Glob, Write
 **7. 구현 로드맵**
 - Phase별 구성, 각 Phase는 독립 배포 가능
 - 파일/모듈/함수 단위로 구체적으로 명시
-- 체크리스트 형식 (날짜/기간 없이)
+- 번호 목록 형식 (날짜/기간/체크박스 없이)
 
 **8. 위험 요인 & 대응책**
 - 표 형식 (위험 | 수준 | 대응)
@@ -104,4 +104,44 @@ tools: Read, Glob, Write
 로드맵: {Phase 수}개 Phase
 
 Critic 검토 준비 완료
+```
+
+### 5단계 — features.md 생성 (Critic APPROVED 이후에만 실행)
+
+forge 스킬로부터 APPROVED 신호를 받은 경우에만 실행한다.
+
+구현 로드맵의 각 Phase를 Feature로, 각 Phase의 항목을 Tasks로 변환하여 `docs/plans/{slug}/features.md`를 생성한다.
+
+**규칙:**
+- Tasks 수 제한 없음 — 기획서 로드맵을 충실히 반영한다
+- 기획서에 명시된 파일명/함수명/컴포넌트명을 Tasks에 그대로 포함한다
+- 의존성은 Phase 순서 기준으로 결정한다
+
+```markdown
+# {topic} Feature 목록
+
+> 기반 기획서: docs/plans/{slug}/plan.md
+> ⚠️ 이 파일을 수동으로 수정하지 마세요. 재슬라이싱은 `/forge {topic}`을 실행하세요.
+
+## 요약
+
+| ID | Feature | 복잡도 | 의존성 |
+|----|---------|--------|--------|
+| F1 | ...     | Low    | -      |
+
+## Features
+
+### F1. {Phase 1 이름}
+
+{한 줄 설명}
+
+**복잡도:** Low / Medium / High
+**의존성:** 없음 / F{n}
+
+**Tasks:**
+- [ ] {기획서 로드맵 항목 그대로}
+- [ ] {기획서 로드맵 항목 그대로}
+...
+
+---
 ```

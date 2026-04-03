@@ -61,8 +61,11 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
    - 전달: `docs/plans/{slug}/plan.md`, 라운드 번호
 
 5. Critic 판정 확인
-   - **APPROVED** → 루프 종료
+   - **APPROVED** → Planner를 재호출하여 features.md 생성
    - **REJECTED** → 다음 라운드 (3라운드 미만인 경우)
+
+6. **APPROVED 후 — Planner 재호출 (features.md 생성)**
+   전달: slug, `docs/plans/{slug}/plan.md`, 작업 = "features-init"
 
 ### 완료 보고
 
@@ -74,9 +77,10 @@ Planner와 Critic을 순차적으로 실행하여 기획서를 완성한다. 최
 주제: {topic}
 slug: {slug}
 최종 기획서: docs/plans/{slug}/plan.md
+features: docs/plans/{slug}/features.md
 라운드: {n}회
 
-다음 단계: /slice {slug}
+다음 단계: /build {slug} F1
 ```
 
 **데드락 (3라운드 REJECTED) 시:**
