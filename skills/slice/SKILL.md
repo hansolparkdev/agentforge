@@ -9,9 +9,9 @@ description: 완성된 기획서를 Feature 단위로 분해한다. "/slice {slu
 
 ## 실행 절차
 
-### 1단계 — 기획서 확인
+### 1단계 — 기획서 존재 확인
 
-`docs/plans/{slug}/plan.md` 존재 여부를 확인한다.
+`docs/plans/{slug}/plan.md` 파일이 존재하는지만 확인한다. (읽지 않는다)
 없으면: "기획서를 먼저 작성해주세요. `/forge {주제}`를 실행하세요."
 
 ### 2단계 — Slicer 호출
