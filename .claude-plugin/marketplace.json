@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "agentforge",
-      "description": "기획(/forge) → Feature 분해(/slice) → TDD 개발(/build) 전 과정을 자동화하는 에이전트 세트.",
+      "description": "forge/slice/build 스킬과 에이전트 세트.",
       "source": {
         "source": "url",
         "url": "https://github.com/hansolparkdev/agentforge.git"
