@@ -19,7 +19,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 ### 1단계 — 호출 유형 확인
 
 전달받은 작업 유형을 확인한다:
-- **`architecture-init`** → /forge APPROVED 직후 호출. `docs/project/architecture.md` 초기화만 수행.
+- **`architecture-init`** → /forge APPROVED 직후 호출. `docs/project/architecture.md`와 `docs/project/index.md` 초기화.
 - **`feature-complete`** (기본) → qa PASS 후 호출. 전체 산출물 갱신 수행.
 
 ### 2단계 — 컨텍스트 수집
@@ -33,7 +33,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 
 ### 3단계 — 갱신 대상 판단
 
-**`architecture-init`인 경우:** `docs/project/architecture.md`만 생성하고 4단계로 건너뛴다.
+**`architecture-init`인 경우:** `docs/project/architecture.md`와 `docs/project/index.md`를 plan.md 기반으로 초기 생성하고 6단계로 건너뛴다.
 
 수정 파일 목록을 분석하여 갱신이 필요한 문서를 결정한다:
 

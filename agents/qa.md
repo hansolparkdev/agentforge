@@ -68,6 +68,20 @@ Tasks에서 파일 경로 추출 → Glob/Bash로 존재 확인
 
 ### 3단계 — 순서대로 실행
 
+**테스트 실행 전략 (속도 최적화):**
+- 커버리지는 **이번 Feature에서 수정된 파일 관련 테스트만** 먼저 실행
+- 수정 파일과 연관 없는 기존 테스트는 재실행하지 않는다
+- 단, 수정 파일이 다른 모듈에서 import되는 경우(공유 유틸, 공통 컴포넌트 등)는 연관 테스트 포함
+
+```bash
+# 수정 파일 기준 관련 테스트만
+npx vitest run --related {수정된 파일 목록}
+# 또는
+pytest {수정된 파일에 대응하는 테스트 경로}
+```
+
+커버리지 기준 미달이 발생하면 전체 테스트로 재확인한다.
+
 **1. 빌드/린트:**
 ```bash
 npm run build && npm run lint
@@ -75,11 +89,11 @@ npm run build && npm run lint
 python -m build && ruff check .
 ```
 
-**2. 커버리지:**
+**2. 커버리지 (관련 테스트만):**
 ```bash
-npm run test:coverage
+npx vitest run --related {수정 파일 목록} --coverage
 # 또는
-pytest --cov --cov-report=term-missing
+pytest {관련 테스트} --cov --cov-report=term-missing
 ```
 
 **3. E2E (Frontend/Fullstack):**
