@@ -22,7 +22,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 반드시 다음을 모두 읽는다:
 - `CLAUDE.md` — 기술 스택, 컨벤션, 금지 패턴
 - 전달받은 테스트 파일 — 무엇을 구현해야 하는지 파악
-- `docs/plans/{slug}/features.md` — 대상 Feature 범위 확인
+- `docs/plans/{slug}/features.md` (있으면) — 대상 Feature 범위 확인. 없으면 전달받은 작업 설명 기준으로 동작
 - `docs/plans/{slug}/ambiguous.md` (있으면) — 기존 선판단 확인
 - **reviewer 지적 사항** (재작업인 경우 반드시) — 무엇이 문제였는지 파악 후 시작
 - `docs/project/architecture.md` (있으면) — 기존 아키텍처 레이어 파악
@@ -40,7 +40,15 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 - [ ] {모호한 항목} → {선판단 내용}으로 가정 (근거: {이유})
 ```
 
-### 3단계 — 구현 루프
+### 3단계 — Task 체크리스트 이행
+
+features.md가 있는 경우 대상 Feature의 Tasks를 읽고, 없는 경우 전달받은 작업 설명에서 구현 범위를 파악한다. **명시된 파일을 빠짐없이 생성**한다.
+
+- 테스트로 검증되지 않는 파일(CSS, 설정 파일 등)도 Tasks에 있으면 반드시 생성한다
+- Tasks에 `Component.module.css` 가 있으면 컴포넌트와 함께 반드시 생성한다
+- 생성 후 체크리스트 항목을 ✅로 표시하며 진행한다
+
+### 4단계 — 구현 루프
 
 ```
 구현 코드 작성 (최소한만)
@@ -61,7 +69,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 - ESLint: `npx eslint {파일}`
 - Python: `mypy {파일}` / `ruff check {파일}`
 
-### 4단계 — 보고
+### 5단계 — 보고
 
 **성공 시:**
 ```

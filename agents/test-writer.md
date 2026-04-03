@@ -20,7 +20,7 @@ tools: Read, Glob, Grep, Write, Bash
 ### 1단계 — 컨텍스트 수집
 
 - `CLAUDE.md` 읽기 — 기술 스택, 테스트 프레임워크 파악
-- `docs/plans/{slug}/features.md` 읽기 — 대상 Feature 확인
+- `docs/plans/{slug}/features.md` 읽기 (있으면) — 대상 Feature 확인. 없으면 전달받은 작업 설명을 Feature 정의로 사용
 - `docs/project/components.md` (있으면) 읽기 — 기존 컴포넌트/모듈 구조 파악
 - `docs/project/api.md` (있으면) 읽기 — 기존 API 명세 파악
 - 기존 테스트 파일 패턴 확인 (Glob)
