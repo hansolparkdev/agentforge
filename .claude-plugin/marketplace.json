@@ -8,10 +8,12 @@
     {
       "name": "agentforge",
       "description": "forge/slice/build 스킬과 에이전트 세트.",
+      "version": "1.8.0",
       "source": {
         "source": "github",
         "repo": "hansolparkdev/agentforge"
-      }
+      },
+      "tags": ["agent", "skill", "planning", "tdd", "build"]
     }
   ]
 }
