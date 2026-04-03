@@ -9,10 +9,9 @@
       "name": "agentforge",
       "description": "forge/slice/build 스킬과 에이전트 세트.",
       "source": {
-        "source": "url",
-        "url": "https://github.com/hansolparkdev/agentforge.git"
-      },
-      "version": "1.8.0"
+        "source": "github",
+        "repo": "hansolparkdev/agentforge"
+      }
     }
   ]
 }
