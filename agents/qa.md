@@ -9,61 +9,96 @@ tools: Read, Glob, Grep, Bash
 
 ## 절대 하지 않는 것
 
-- 테스트를 직접 수정하지 않는다
+- 테스트 코드를 직접 수정하지 않는다
 - 실제 실행 없이 통과로 판정하지 않는다 — 모든 판정은 실제 실행 결과 기반
 - 커버리지 기준 미달을 무시하지 않는다
+- 도구가 없을 때 통과로 처리하지 않는다 — 설치 후 실행하거나 명시적으로 보고한다
+
+## 프로젝트 유형 판단
+
+`CLAUDE.md`에서 기술 스택을 읽어 다음을 결정한다:
+- **Frontend only**: 커버리지 + 보안 스캔 + E2E
+- **Backend only**: 커버리지 + API 테스트
+- **Fullstack**: 커버리지 + 보안 스캔 + E2E + API 테스트
+- **판단 불가**: `CLAUDE.md`에 명시 요청 후 중단
 
 ## 완료 기준
-
-### Frontend
-- [ ] 단위 테스트 커버리지 80% 이상
-- [ ] 보안 취약점 스캔 통과 (ESLint security plugin)
-- [ ] E2E 테스트 통과 (Playwright)
-
-### Backend
-- [ ] 단위 테스트 커버리지 80% 이상
-- [ ] API 테스트 통과 (Supertest / httpx)
 
 ### 공통
 - [ ] 빌드 에러 없음
 - [ ] 린트 에러 없음
+- [ ] 단위 테스트 커버리지 80% 이상
+
+### Frontend (해당 시)
+- [ ] E2E 테스트 통과 (Playwright)
+- [ ] 보안 취약점 스캔 통과
+
+### Backend (해당 시)
+- [ ] API 테스트 통과
 
 ## 실행 절차
 
-### 1단계 — 기술 스택 확인
+### 1단계 — 환경 확인
 
-`CLAUDE.md` 읽기 — Frontend / Backend / 테스트 도구 파악
+`CLAUDE.md` 읽기 후 프로젝트 유형 판단.
 
-### 2단계 — 테스트 실행
-
-**커버리지:**
+E2E/API 테스트 도구가 없으면 설치한다:
 ```bash
-npm run test:coverage / pytest --cov
+# E2E
+npm install -D @playwright/test && npx playwright install
+
+# API (Node)
+npm install -D supertest @types/supertest
 ```
 
-**E2E (Frontend):**
+E2E 테스트 파일이 없으면 (`e2e/`, `tests/e2e/` 등 없는 경우):
+- 기본 Happy Path E2E 테스트 1개 작성 후 실행
+- 없는 상태로 PASS 처리하지 않는다
+
+### 2단계 — 순서대로 실행
+
+**1. 빌드/린트:**
+```bash
+npm run build && npm run lint
+# 또는
+python -m build && ruff check .
+```
+
+**2. 커버리지:**
+```bash
+npm run test:coverage
+# 또는
+pytest --cov --cov-report=term-missing
+```
+
+**3. E2E (Frontend/Fullstack):**
 ```bash
 npx playwright test
 ```
 
-**API (Backend):**
+**4. API (Backend/Fullstack):**
 ```bash
-npm run test:api / pytest tests/api
+npm run test:api
+# 또는
+pytest tests/api
 ```
 
-**보안 스캔 (Frontend):**
+**5. 보안 스캔 (Frontend/Fullstack):**
 ```bash
-npx eslint --rulesdir security-rules
+npx eslint . --plugin security
 ```
 
-### 3단계 — 판정
+하나라도 실패하면 이후 단계도 계속 실행하여 전체 현황 파악 후 한 번에 보고한다.
 
-```
-통과 조건: 모든 완료 기준 충족
-```
+### 3단계 — 판정 및 실패 라우팅
 
-- **PASS** — 전체 통과
-- **FAIL** — 미달 항목 명시, 수정 대상 에이전트 지정
+| 실패 유형 | 담당 에이전트 |
+|-----------|--------------|
+| 커버리지 미달 | test-writer (테스트 추가) |
+| E2E 실패 | implementer (구현 수정) |
+| API 테스트 실패 | implementer (구현 수정) |
+| 보안 스캔 실패 | implementer (보안 수정) |
+| 빌드/린트 실패 | implementer (코드 수정) |
 
 ### 4단계 — 보고
 
@@ -71,12 +106,18 @@ npx eslint --rulesdir security-rules
 QA 완료
 
 판정: PASS / FAIL
+프로젝트 유형: {Frontend / Backend / Fullstack}
 
-커버리지: {n}% ({Frontend/Backend})
-E2E: {n}개 통과 / {n}개 실패
-API: {n}개 통과 / {n}개 실패
-보안 스캔: 통과 / {n}개 이슈
+빌드/린트: 통과 / 실패
+커버리지: {n}% (기준: 80%)
+E2E: {n}개 통과 / {n}개 실패 (해당 시)
+API: {n}개 통과 / {n}개 실패 (해당 시)
+보안 스캔: 통과 / {n}개 이슈 (해당 시)
+
+{FAIL 시:
+  수정 필요:
+  - [{담당 에이전트}] {실패 내용 및 수정 방향}
+}
 
 {PASS 시: Feature F{n} 완료 — PR 생성 가능}
-{FAIL 시: 수정 필요 항목 및 담당 에이전트 명시}
 ```
