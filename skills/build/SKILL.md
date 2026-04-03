@@ -5,7 +5,7 @@ description: Feature 단위 TDD 개발. "/build {slug} F{n}" 또는 자연어로
 
 # Build
 
-test-writer → implementer → refactorer → reviewer → qa 순서로 에이전트를 실행하여 Feature를 완성한다.
+test-writer → implementer → reviewer → qa 순서로 에이전트를 실행하여 Feature를 완성한다.
 
 ## 호출 방식
 
@@ -63,13 +63,13 @@ features: docs/plans/{slug}/features.md (있는 경우)
 각 에이전트 시작 시 시각 기록: `{에이전트명}_start = 현재 시각`
 각 에이전트 완료 시 시각 기록: `{에이전트명}_end = 현재 시각`
 
-**[1/5] test-writer**
+**[1/4] test-writer**
 전달: 기본 컨텍스트
 산출물: 테스트 파일 경로 목록
 
 ---
 
-**[2/5] implementer**
+**[2/4] implementer**
 전달: 기본 컨텍스트 + test-writer가 작성한 테스트 파일 경로 목록
 산출물: 구현 파일 경로 목록, 테스트 통과 수
 
@@ -77,33 +77,25 @@ features: docs/plans/{slug}/features.md (있는 경우)
 
 ---
 
-**[3/5] refactorer** (조건부 실행)
-수정 파일이 3개 이하이고 implementer가 "단순 구현"으로 완료한 경우 → 건너뛰고 [4/5]으로
-그 외 → 실행
+**[3/4] reviewer** (reviewer_count = 0)
 전달: implementer가 작성/수정한 파일 경로 목록
-산출물: 수정된 파일 경로 목록
 
----
-
-**[4/5] reviewer** (reviewer_count = 0)
-전달: refactorer가 전달한 파일 경로 목록
-
-- PASS → [5/5] qa로 진행
+- PASS → [4/4] qa로 진행
 - FAIL → reviewer_count += 1
-  - reviewer_count ≤ 3: reviewer 지적 사항 전체를 implementer에게 전달 → [2/5]부터 재실행
+  - reviewer_count ≤ 3: reviewer 지적 사항 전체를 implementer에게 전달 → [2/4]부터 재실행
   - reviewer_count > 3: 에스컬레이션
 
 ---
 
-**[5/5] qa** (qa_count = 0)
+**[4/4] qa** (qa_count = 0)
 전달: 기본 컨텍스트 + 전체 수정 파일 목록
 
 - PASS → features.md Tasks 업데이트 후 완료 보고
 - FAIL → qa_count += 1
   - qa_count ≤ 3: 실패 유형별 담당 에이전트로 재호출
-    - 커버리지 미달 → [1/5] test-writer 재실행 (테스트 추가)
-    - E2E / API / 보안 실패 → [2/5] implementer 재실행 (qa 실패 내용 전달)
-    - 빌드/린트 실패 → [2/5] implementer 재실행
+    - 커버리지 미달 → [1/4] test-writer 재실행 (테스트 추가)
+    - E2E / API / 보안 실패 → [2/4] implementer 재실행 (qa 실패 내용 전달)
+    - 빌드/린트 실패 → [2/4] implementer 재실행
   - qa_count > 3: 에스컬레이션
 
 ---
@@ -129,7 +121,6 @@ E2E / API: 통과 (해당 시)
 |------------|---------|
 | test-writer  | {n}s   |
 | implementer  | {n}s   |
-| refactorer   | {n}s   |
 | reviewer     | {n}s   |
 | qa           | {n}s   |
 | 합계          | {n}s   |
