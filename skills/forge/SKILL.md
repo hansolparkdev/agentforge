@@ -1,6 +1,6 @@
 ---
 name: forge
-description: 주제를 기획한다. "/forge {주제}"로 호출하면 Planner와 Critic이 협력하여 전략 기획서를 작성한다. 같은 프로젝트에 기능을 추가할 때마다 호출한다.
+description: 전략 기획서 작성. "/forge {주제}"로 호출.
 ---
 
 # Forge

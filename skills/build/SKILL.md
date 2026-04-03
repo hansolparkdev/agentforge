@@ -1,6 +1,6 @@
 ---
 name: build
-description: TDD 기반 개발을 실행한다. "/build {slug} F{n}", "/build F1", "/build 로그인 만들어줘" 등 다양한 형태로 호출 가능. slug나 Feature 번호가 불명확하면 docs/plans/ 구조를 보고 스스로 추론한다.
+description: Feature 단위 TDD 개발. "/build {slug} F{n}" 또는 자연어로 호출 가능.
 ---
 
 # Build

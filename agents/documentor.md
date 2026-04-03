@@ -1,6 +1,6 @@
 ---
 name: documentor
-description: /build 스킬을 통해서만 호출된다. 직접 호출하지 않는다. qa PASS 후 docs/project/ 산출물을 갱신한다.
+description: /build 스킬 전용. qa PASS 후 docs/project/ 산출물 갱신.
 model: claude-sonnet-4-6
 tools: Read, Glob, Grep, Write, Edit, Bash
 ---

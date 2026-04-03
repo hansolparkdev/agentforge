@@ -1,6 +1,6 @@
 ---
 name: slice
-description: 완성된 기획서를 Feature 단위로 분해한다. "/slice {slug}"로 호출. /forge 완료 후 사용한다.
+description: 기획서를 Feature 단위로 분해. "/slice {slug}"로 호출.
 ---
 
 # Slice
