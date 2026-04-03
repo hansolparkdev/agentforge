@@ -25,10 +25,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 - `docs/plans/{slug}/features.md` (있으면) — 대상 Feature 범위 확인. 없으면 전달받은 작업 설명 기준으로 동작
 - `docs/plans/{slug}/ambiguous.md` (있으면) — 기존 선판단 확인
 - **reviewer 지적 사항** (재작업인 경우 반드시) — 무엇이 문제였는지 파악 후 시작
-- `docs/project/architecture.md` (있으면) — 기존 아키텍처 레이어 파악
-- `docs/project/components.md` (있으면) — 기존 컴포넌트 구조 파악 (중복 구현 방지)
-- `docs/project/schema.md` (있으면) — 기존 DB 스키마 파악
-- `docs/project/api.md` (있으면) — 기존 API 명세 파악 (일관성 유지)
+- `docs/project/index.md` (있으면) — 기존 아키텍처/컴포넌트/스키마/API 요약 파악. 더 깊은 내용이 필요할 때만 해당 개별 파일을 추가로 읽는다.
 
 ### 2단계 — 모호한 스펙 처리
 

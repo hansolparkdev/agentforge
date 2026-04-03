@@ -41,7 +41,7 @@ tools: Read, Glob, Grep, Bash
 ### 1단계 — 환경 확인
 
 `CLAUDE.md` 읽기 후 프로젝트 유형 판단.
-`docs/project/coverage.md` (있으면) 읽기 — 이전 커버리지 기준선 파악.
+`docs/project/index.md` (있으면) 읽기 — 커버리지 기준선 및 프로젝트 현황 파악.
 
 E2E/API 테스트 도구가 없으면 설치한다:
 ```bash
@@ -84,8 +84,15 @@ pytest --cov --cov-report=term-missing
 
 **3. E2E (Frontend/Fullstack):**
 ```bash
+# headless 실행 (CI 모드)
 npx playwright test
+
+# 실패 시 headed 모드로 재실행하여 실제 브라우저에서 확인
+npx playwright test --headed
 ```
+
+E2E 실패 시 headed 모드로 반드시 재실행하여 브라우저 화면을 확인한다.
+headless 통과라도 시각적 레이아웃 이슈(깨진 CSS, 요소 겹침 등)가 의심되면 headed로 확인한다.
 
 **4. API (Backend/Fullstack):**
 ```bash

@@ -21,7 +21,7 @@ tools: Read, Glob, Grep, Edit, Bash
 
 - `CLAUDE.md` 읽기 — 코드 컨벤션, 네이밍 규칙, 금지 패턴
 - **전달받은 파일 목록만** 읽기 (implementer가 작성/수정한 파일)
-- `docs/project/components.md` (있으면) 읽기 — 기존 패턴/컨벤션 파악
+- `docs/project/index.md` (있으면) 읽기 — 기존 패턴/컨벤션 파악
 
 ### 2단계 — 리팩토링
 

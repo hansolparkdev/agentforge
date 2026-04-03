@@ -184,7 +184,44 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 ## 마지막 업데이트: F{n}
 ```
 
-### 5단계 — 보고
+### 5단계 — index.md 갱신
+
+개별 문서 갱신 후 **반드시** `docs/project/index.md`를 최신 상태로 갱신한다.
+에이전트들이 개별 파일 대신 이 파일 하나를 읽으므로 항상 최신을 유지해야 한다.
+
+```markdown
+# 프로젝트 인덱스
+
+> 마지막 업데이트: F{n} — {날짜}
+> 커버리지: {n}%
+
+## 기술 스택
+{한 줄 요약 — 예: Next.js + FastAPI + PostgreSQL}
+
+## 아키텍처
+{레이어 구조 2-3줄 요약}
+{핵심 컴포넌트 목록 — 파일 경로 포함}
+
+## API
+{현재까지 추가된 엔드포인트 목록 — Method + 경로 + 한 줄 설명}
+
+## DB 스키마
+{테이블/컬렉션 목록 — 핵심 필드만}
+
+## 디자인 시스템 (UI 포함 시)
+{CSS 방법론, 색상 팔레트 요약, 브레이크포인트}
+
+## 보안
+{적용된 인증/인가 방식, 주요 보안 조치}
+
+## 완료된 Feature
+{F1, F2, ... — 각 한 줄 설명}
+
+## 미확인 선판단
+{decisions.md의 미확인 항목 수 및 요약}
+```
+
+### 6단계 — 보고
 
 ```
 문서 갱신 완료
@@ -192,6 +229,7 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 Feature: F{n} — {Feature 이름}
 
 갱신된 문서:
+- docs/project/index.md (항상)
 - docs/project/status.md
 - docs/project/coverage.md ({n}%)
 - {갱신된 나머지 문서들}
