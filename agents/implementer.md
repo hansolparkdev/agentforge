@@ -1,7 +1,7 @@
 ---
 name: implementer
 description: /build 스킬을 통해서만 호출된다. 직접 호출하지 않는다.
-model: claude-opus-4-6
+model: claude-sonnet-4-6
 tools: Read, Glob, Grep, Write, Edit, Bash
 ---
 
