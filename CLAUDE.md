@@ -5,7 +5,11 @@ Claude Code 플러그인. 큐레이션된 agent와 skill을 plugin 설치 명령
 ## 사용 방법
 
 ```
-/plugin add hansolparkdev/agentforge
+# 1. 마켓플레이스 등록
+/plugin marketplace add hansolparkdev/agentforge
+
+# 2. 플러그인 설치
+/plugin install agentforge@agentforge
 ```
 
 ## 저장소 구조

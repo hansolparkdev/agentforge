@@ -1,0 +1,14 @@
+{
+  "name": "agentforge",
+  "owner": {
+    "name": "hansolparkdev"
+  },
+  "plugins": [
+    {
+      "name": "agentforge",
+      "description": "forge/build 스킬과 에이전트 세트.",
+      "version": "2.0.0",
+      "source": "./"
+    }
+  ]
+}
